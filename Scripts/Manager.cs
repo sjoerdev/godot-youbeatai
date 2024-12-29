@@ -381,36 +381,34 @@ public partial class Manager : Node
         return monoStream;
     }
 
-    void MixAudioFiles(string file1, string file2, string outputFile)
+    public void MixAudioFiles(string file1, string file2, string outputFile)
     {
         using (var reader1 = new AudioFileReader(file1))
+        using (var reader2 = new AudioFileReader(file2))
         {
-            using (var reader2 = new AudioFileReader(file2))
+            // Use the format of the input files
+            var outputFormat = reader1.WaveFormat;
+
+            // Create a MixingSampleProvider for the two input files
+            var mixer = new MixingSampleProvider(new[] { reader1.ToSampleProvider(), reader2.ToSampleProvider() });
+
+            // Write the mixed audio to the output file in chunks
+            using (var writer = new WaveFileWriter(outputFile, outputFormat))
             {
-                // find which wav is the longest and use that time as the output wav duration
-                var maxDurationSeconds = Math.Max(reader1.TotalTime.TotalSeconds, reader2.TotalTime.TotalSeconds);
-                TimeSpan maxDuration = TimeSpan.FromSeconds(maxDurationSeconds);
+                const int bufferSize = 4096; // Process audio in chunks
+                float[] buffer = new float[bufferSize];
 
-                // create mixer
-                var sources = new AudioFileReader[] { reader1, reader2 };
-                var mixer = new MixingSampleProvider(sources);
-                mixer.ReadFully = true;
-
-                // set the length of the mix to match the longest file
-                var outputWaveFormat = mixer.WaveFormat;
-
-                // write the mixed audio to a new wav file
-                using (var writer = new WaveFileWriter(outputFile, outputWaveFormat))
+                while (true)
                 {
-                    // buffer for mixed samples
-                    float[] buffer = new float[mixer.WaveFormat.SampleRate * mixer.WaveFormat.Channels];
-                    int samplesRead;
+                    // Read samples from the mixer
+                    int samplesRead = mixer.Read(buffer, 0, bufferSize);
 
-                    // read samples from the mixer and write to the output file
-                    while ((samplesRead = mixer.Read(buffer, 0, buffer.Length)) > 0) writer.WriteSamples(buffer, 0, samplesRead);
+                    // Exit the loop if no more samples are available
+                    if (samplesRead == 0) break;
+
+                    // Write the samples to the output file
+                    writer.WriteSamples(buffer, 0, samplesRead);
                 }
-
-                Console.WriteLine($"Mixed audio saved to {outputFile}");
             }
         }
     }
@@ -476,7 +474,7 @@ public partial class Manager : Node
 
         // layer voiceover
         ConvertAudioStreamWavToWav((AudioStreamWav)SongVoiceOver.instance.voiceOver, "voiceover.wav");
-        // MixAudioFiles(filename + ".wav", "voiceover.wav", "combined.wav");
+        MixAudioFiles(filename + ".wav", "voiceover.wav", "combined.wav");
 
         // convert and finish
         ConvertWavToMp3("combined.wav");
@@ -918,6 +916,8 @@ public partial class Manager : Node
     public override void _Process(double delta)
     {
         time += (float)delta;
+
+        if (Input.IsKeyPressed(Key.F6)) bpm = 900;
 
         if (!latereadydone)
         {
