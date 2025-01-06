@@ -92,7 +92,7 @@ public partial class LayerVoiceOver : Node
 		recordLayerButton.Visible = false;
 		SongVoiceOver.instance.recordSongButton.Visible = false;
 
-		SetVolume(0f);
+		SetVolume(0.5f);
     }
 
     private void StopRecording()
