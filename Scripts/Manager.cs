@@ -1307,10 +1307,11 @@ public partial class Manager : Node
             sprite.Scale += Vector2.One;
             progressBarValue += 1f / beatsAmount * 100f;
             EmitProgressBarParticles();
+            EmitBeatParticles(beatSprites[ring, currentBeat].Position, colors[ring]);
         }
         clappedAmount++;
         draganddropButton1.Scale += Vector2.One / 2;
-        
+
         if (add_beats.ButtonPressed) ((DragAndDropButton)draganddropButton1).ActivateBeat();
     }
 
@@ -1325,10 +1326,11 @@ public partial class Manager : Node
             sprite.Scale += Vector2.One;
             progressBarValue += 1f / beatsAmount * 100f;
             EmitProgressBarParticles();
+            EmitBeatParticles(beatSprites[ring, currentBeat].Position, colors[ring]);
         }
         stompedAmount++;
         draganddropButton0.Scale += Vector2.One / 2;
-        
+
         if (add_beats.ButtonPressed) ((DragAndDropButton)draganddropButton0).ActivateBeat();
     }
 
