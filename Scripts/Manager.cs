@@ -468,7 +468,7 @@ public partial class Manager : Node
         ChangePitch(filename + ".wav", 2f);
 
         // convert and finish
-        ConvertWavToMp3("combined.wav");
+        //ConvertWavToMp3(filename);
         ShowSavingLabel(filename);
         hassavedtofile = true;
     }
@@ -537,7 +537,7 @@ public partial class Manager : Node
         MixAudioFiles(filename + ".wav", "voiceover.wav", "combined.wav");
 
         // convert and finish
-        ConvertWavToMp3("combined.wav");
+        ConvertWavToMp3("combined");
         ShowSavingLabel(filename);
         hassavedtofile = true;
     }
