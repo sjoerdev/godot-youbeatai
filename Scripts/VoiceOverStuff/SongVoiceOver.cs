@@ -18,6 +18,9 @@ public partial class SongVoiceOver : Node
 	public bool recording = false;
 	float recordingTimer = 0;
 
+	public bool finished = false;
+
+
 	// other
 	[Export] Button snellerButton;
 	[Export] Button langzamerButton;
@@ -113,6 +116,8 @@ public partial class SongVoiceOver : Node
 		LayerVoiceOver.instance.recordLayerButton.Visible = true;
 
 		SetVolume(1f);
+
+		finished = true;
     }
 
 	void SetVolume(float value)

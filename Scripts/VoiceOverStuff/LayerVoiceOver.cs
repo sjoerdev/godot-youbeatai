@@ -11,12 +11,14 @@ public partial class LayerVoiceOver : Node
 	[Export] public Button recordLayerButton;
 
 	// recording
-	AudioStream[] voiceOvers = new AudioStream[10];
+	public AudioStream[] voiceOvers = new AudioStream[10];
 	AudioEffectRecord audioEffectRecord;
 	AudioStreamPlayer2D audioPlayer;
 	bool shouldRecord = false;
 	bool recording = false;
 	float recordingTimer = 0;
+
+	public bool finished = false;
 
 	// other
 	[Export] Button snellerButton;
@@ -113,6 +115,8 @@ public partial class LayerVoiceOver : Node
 		SongVoiceOver.instance.recordSongButton.Visible = true;
 
 		SetVolume(1f);
+
+		finished = true;
     }
 
 	void SetVolume(float value)

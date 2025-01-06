@@ -178,6 +178,8 @@ public partial class Manager : Node
     // on button functions
     bool[,] savedTemplate = new bool[4, 32];
 
+    bool loadedtemplate = false;
+
     public void OnSaveLayoutButton()
     {
         GD.Print("save");
@@ -188,6 +190,7 @@ public partial class Manager : Node
     {
         GD.Print("load");
         beatActives = (bool[,])savedTemplate.Clone();
+        loadedtemplate = true;
     }
 
     public void OnClearLayoutButton()
@@ -696,7 +699,7 @@ public partial class Manager : Node
         }
 
         // setup achievements
-        instructions = new string[23]
+        instructions = new string[26]
         {
             // intro
 			"Hoi ik ben Klappy!, we gaan een beat maken en ik ga je daarbij helpen. klap 👏 in je handen om verder te gaan",
@@ -735,14 +738,19 @@ public partial class Manager : Node
 			"Druk op de Galm 🏛 of de Echo ⛰ knop. voor speciale echo's",
 			"Tijd voor wat Swing 🌀 in de beat. sleep het swing balkje naar rechts.",
 
-            // saving
-			"Je hebt echt een super beat gemaakt! Druk nu op de 📥 knop om je beat naar een muziek bestand te saven.",
-			"Druk op het 'Copieer Template' 💾 knopje om je beats naar een template te saven, zodat je altijd terug kan vinden.",
-			"Super gedaan! nu nog een laatste weetje en dan kan je zelf aan de slag, druk op 'Leeg Template' 🗑️ om alles te resetten.",
-			"Oh nee nu is alles weg! Gelukkig heb je de template nog files nog. Nu mag je helemaal zelf aan de slag! Druk op de Stop Tutorial knop om de tutorial te eindigen",
+            // layer voice over
+            "door op de 🎤 in het midden van de beat te drukken kan je een beat geluid opnemen. hij begint met opnemen als die bovenaan is.",
+            "klik op '⚙️ Instellingen', hier kan je 'Liedje Modus' 🔁 aanzetten zodat de Beats achter elkaar afgespeeld worden",
+            "Druk op Start ⏯ om te horen hoe je eigen beats achter elkaar klinken",
+            "Liedjes hebben vaak een patroon zoals: Intro🌱, Verhaal📜, Refrein🤩 en Einde🏁.  deze onderdelen komen dan vaak terug. Gelukkig is er een trucje om dit makkelijk te maken 'Copieer Beaat' 💾 en 'Plak Beat' ♻️ , probeer het maar eens.",
+
+            // song voice over
+            "Laten we nu het hele liedje opnemen door op de 🎙️ 'Song Opnemen' links bovenin het scherm te drukken. Dan begin hij met opnemen als hij bij de eerste beat op de eerst laag is",
+            "Als je tevreden bent dan kan je ook echt je '🎼 Liedje naar mp3'",
+            "Druk op de 'Stop Tutorial' knop om de tutorial te eindigen",
         };
 
-        conditions = new Func<bool>[]
+        conditions = new Func<bool>[26]
         {
             // intro
             () => clapped, // t key is debug only
@@ -781,14 +789,19 @@ public partial class Manager : Node
             () => ReverbDelayManager.instance?.reverbSlider.Value != 0 || ReverbDelayManager.instance?.delaySlider.Value != 0,
             () => swing > 0.1f,
 
-            // saving
-            () => hassavedtofile,
-            () => savedToLaout,
-            () => hasclearedlayout,
-            () => false, // todo: implement
+            // layer voice over
+            () => LayerVoiceOver.instance.finished,
+            () => layerLoopToggle.ButtonPressed,
+            () => playing == true,
+            () => savedToLaout == true && loadedtemplate == true,
+
+            // song voice over
+            () => SongVoiceOver.instance.finished,
+            () => hassavedtofile == true,
+            () => false
         };
         
-        outcomes = new Action[23]
+        outcomes = new Action[]
         {
             () => SetRingVisibility(0, true),
             null,
@@ -808,11 +821,18 @@ public partial class Manager : Node
             () => SetEffectButtonsVisibility(true),
             null,
             null,
-            () => SetMainButtonsVisibility(true),
+            () => { SetMainButtonsVisibility(true); LayerVoiceOver.instance.recordLayerButton.Visible = true; },
+
+            // layer voice over
+            () => SetLayerSwitchButtonsVisibility(true),
+            () => settingsPanel.Visible = true,
             null,
-            () => SetTemplateButtonsVisibility(true),
+            () => SongVoiceOver.instance.recordSongButton.Visible = true,
+
+            // song voice over
             null,
-            () => SetEntireInterfaceVisibility(true),
+            null,
+            null
         };
     }
 
@@ -972,6 +992,9 @@ public partial class Manager : Node
     bool rt_pressed = false;
 	bool rt_pressed_lastframe = false;
 
+    bool f7_pressed = false;
+	bool f7_pressed_lastframe = false;
+
     bool latereadydone = false;
 
     float time = 0;
@@ -1039,7 +1062,12 @@ public partial class Manager : Node
             Func<bool> condition = conditions[achievementLevel];
             Action outcome = outcomes[achievementLevel];
             InstructionLabel.Text = instruction;
-            if (condition())
+
+            f7_pressed_lastframe = f7_pressed;
+		    f7_pressed = Input.IsKeyPressed(Key.F7);
+		    bool skip = f7_pressed && f7_pressed != f7_pressed_lastframe;
+
+            if (condition() || skip)
             {
                 if (outcome != null) outcome();
                 achievementLevel++;

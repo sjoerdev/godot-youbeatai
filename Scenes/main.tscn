@@ -209,7 +209,7 @@ show_percentage = false
 [node name="LayerVoiceOver" type="Node" parent="Managers" node_paths=PackedStringArray("textureProgressBar", "recordLayerButton", "snellerButton", "langzamerButton")]
 script = ExtResource("18_tunoq")
 textureProgressBar = NodePath("TextureProgressBar")
-recordLayerButton = NodePath("../../UserInterface/RecordLayerButton")
+recordLayerButton = NodePath("../../UserInterface/RecordBeatButton")
 snellerButton = NodePath("../../UserInterface/MainButtons/BpmUpButton")
 langzamerButton = NodePath("../../UserInterface/MainButtons/BpmDownButton")
 
@@ -226,22 +226,24 @@ texture_progress = ExtResource("19_mlc13")
 
 [node name="UserInterface" type="Node" parent="."]
 
-[node name="RecordLayerButton" type="Button" parent="UserInterface"]
+[node name="RecordSongButton" type="Button" parent="UserInterface"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1165.0
-offset_top = -696.0
-offset_right = -985.0
-offset_bottom = -664.0
+offset_left = -1169.0
+offset_top = -711.0
+offset_right = -988.0
+offset_bottom = -679.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "🎙️  Record Over Layer"
+text = "🎙️  Song Opnemen
+"
+alignment = 0
 
-[node name="RecordSongButton" type="Button" parent="UserInterface"]
+[node name="RecordBeatButton" type="Button" parent="UserInterface"]
 z_index = 40
 anchors_preset = 8
 anchor_left = 0.5
@@ -255,12 +257,13 @@ offset_bottom = -320.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 14
 theme_override_styles/disabled = SubResource("StyleBoxFlat_xng46")
 theme_override_styles/hover = SubResource("StyleBoxFlat_acarb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xng46")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xng46")
-text = "Record
-Song
+text = "Beat
+Opnemen
 🎙️"
 
 [node name="SwitchLayerButtons" type="Node" parent="UserInterface"]
@@ -901,10 +904,10 @@ text = "Record ⏺️"
 alignment = 2
 
 [node name="SwingSlider" type="HSlider" parent="UserInterface"]
-offset_left = -533.0
-offset_top = -205.0
-offset_right = -446.0
-offset_bottom = -189.0
+offset_left = -531.0
+offset_top = -220.0
+offset_right = -444.0
+offset_bottom = -204.0
 scale = Vector2(2, 2)
 max_value = 0.4
 step = 0.01
@@ -919,10 +922,10 @@ text = "🌀Swing"
 vertical_alignment = 1
 
 [node name="ReverbSlider" type="HSlider" parent="UserInterface"]
-offset_left = -533.0
-offset_top = -275.0
-offset_right = -446.0
-offset_bottom = -259.0
+offset_left = -531.0
+offset_top = -290.0
+offset_right = -444.0
+offset_bottom = -274.0
 scale = Vector2(2, 2)
 max_value = 0.5
 step = 0.01
@@ -937,10 +940,10 @@ text = "🏛️ Galm"
 vertical_alignment = 1
 
 [node name="DelaySlider" type="HSlider" parent="UserInterface"]
-offset_left = -533.0
-offset_top = -240.0
-offset_right = -446.0
-offset_bottom = -224.0
+offset_left = -531.0
+offset_top = -255.0
+offset_right = -444.0
+offset_bottom = -239.0
 scale = Vector2(2, 2)
 max_value = 0.5
 step = 0.01
