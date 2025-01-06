@@ -64,6 +64,7 @@ public partial class SongVoiceOver : Node
 		Manager.instance.ResetPlayerButton.Disabled = recording;
 		recordSongButton.Disabled = recording;
 		LayerVoiceOver.instance.recordLayerButton.Disabled = recording;
+		LayerVoiceOver.instance.textureProgressBar.Visible = recording;
 
 		// set progress bar value
 		if (recording) progressbar.Value = (recordingTimer / (10f * (32f * (60f / (float)Manager.instance.bpm)))) * 2f;

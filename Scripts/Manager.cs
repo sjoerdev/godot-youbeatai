@@ -867,6 +867,8 @@ public partial class Manager : Node
         // recording
         SongVoiceOver.instance.recordSongButton.Visible = visible;
         SongVoiceOver.instance.progressbar.Visible = visible;
+        LayerVoiceOver.instance.recordLayerButton.Visible = visible;
+        LayerVoiceOver.instance.textureProgressBar.Visible = visible;
     }
 
     void SetRingVisibility(int ring, bool visible)
