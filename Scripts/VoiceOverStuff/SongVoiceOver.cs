@@ -8,7 +8,7 @@ public partial class SongVoiceOver : Node
 
 	// user interface
 	[Export] public ProgressBar progressbar;
-	[Export] public Button recordButton;
+	[Export] public Button recordSongButton;
 
 	// recording
 	public AudioStream voiceOver = null;
@@ -28,7 +28,7 @@ public partial class SongVoiceOver : Node
         instance ??= this;
 
 		// init record button
-		recordButton.Pressed += () => shouldRecord = !shouldRecord;
+		recordSongButton.Pressed += () => shouldRecord = !shouldRecord;
 
 		// create audioplayer
 		audioPlayer = new AudioStreamPlayer2D();
@@ -50,7 +50,7 @@ public partial class SongVoiceOver : Node
     public override void _Process(double delta)
 	{
 		// set color of record button
-		recordButton.Modulate = shouldRecord ? new(1, 0.5f, 0.5f) : new(1, 1, 1);
+		recordSongButton.Modulate = shouldRecord ? new(1, 0.5f, 0.5f) : new(1, 1, 1);
 
 		// update recording timer
 		if (recording) recordingTimer += (float)delta;
@@ -62,7 +62,8 @@ public partial class SongVoiceOver : Node
 		Manager.instance.SetLayerSwitchButtonsEnabled(!recording);
 		Manager.instance.PlayPauseButton.Disabled = recording;
 		Manager.instance.ResetPlayerButton.Disabled = recording;
-		recordButton.Disabled = recording;
+		recordSongButton.Disabled = recording;
+		LayerVoiceOver.instance.recordLayerButton.Disabled = recording;
 
 		// set progress bar value
 		if (recording) progressbar.Value = (recordingTimer / (10f * (32f * (60f / (float)Manager.instance.bpm)))) * 2f;

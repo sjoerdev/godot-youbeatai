@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c78m8ijn10kwh"]
+[gd_scene load_steps=44 format=3 uid="uid://c78m8ijn10kwh"]
 
 [ext_resource type="Script" path="res://Scripts/Manager.cs" id="1_rfd7i"]
 [ext_resource type="PackedScene" uid="uid://cqsvcw13b83yp" path="res://Scenes/beat.tscn" id="2_1eep1"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://b5gky5aods412" path="res://Resources/Textures/rawmic.png" id="15_5hbpj"]
 [ext_resource type="Script" path="res://Scripts/RecordSampleButton.cs" id="16_ngh84"]
 [ext_resource type="Script" path="res://Scripts/SongVoiceOver.cs" id="17_l7jd2"]
+[ext_resource type="Script" path="res://Scripts/VoiceOverStuff/LayerVoiceOver.cs" id="18_tunoq"]
+[ext_resource type="Texture2D" uid="uid://bb782qvgu7cbs" path="res://Resources/Textures/radial.png" id="19_mlc13"]
 [ext_resource type="Texture2D" uid="uid://b80lrad4guock" path="res://Resources/Textures/star.png" id="20_tvghb"]
 [ext_resource type="Texture2D" uid="uid://fgq18msakepv" path="res://Resources/Textures/robot.png" id="21_qncea"]
 [ext_resource type="Texture2D" uid="uid://c8ur7csxddwk8" path="res://Resources/Textures/brush.png" id="22_sb4d6"]
@@ -91,7 +93,7 @@ script = ExtResource("1_rfd7i")
 metronome_sfx = ExtResource("2_c85ny")
 achievement_sfx = ExtResource("3_p4kny")
 mainAudioFiles = Array[AudioStream]([ExtResource("5_cl760"), ExtResource("6_v5052"), ExtResource("8_4xf5a"), ExtResource("6_60v1h")])
-saveToWavButton = NodePath("../../UserInterface/MainButtons/SaveToWavButton")
+saveToWavButton = NodePath("../../UserInterface/RecordLayerButton")
 bpm = 80
 beat_particles = NodePath("../../BeatParticleSystem")
 pbar_particles = NodePath("../../ProgressBarParticleSystem")
@@ -202,7 +204,40 @@ max_value = 1.0
 fill_mode = 3
 show_percentage = false
 
+[node name="LayerVoiceOver" type="Node" parent="Managers" node_paths=PackedStringArray("recordLayerButton", "snellerButton", "langzamerButton", "textureProgressBar")]
+script = ExtResource("18_tunoq")
+recordLayerButton = NodePath("../../UserInterface/RecordLayerButton")
+snellerButton = NodePath("../../UserInterface/MainButtons/BpmUpButton")
+langzamerButton = NodePath("../../UserInterface/RecordLayerButton")
+textureProgressBar = NodePath("TextureProgressBar")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Managers/LayerVoiceOver"]
+offset_left = -265.0
+offset_top = -267.0
+offset_right = 247.0
+offset_bottom = 245.0
+scale = Vector2(1.05, 1.05)
+max_value = 32.0
+step = 0.01
+fill_mode = 4
+texture_progress = ExtResource("19_mlc13")
+
 [node name="UserInterface" type="Node" parent="."]
+
+[node name="RecordLayerButton" type="Button" parent="UserInterface"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -730.0
+offset_top = -88.0
+offset_right = -550.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "Record Over Layer"
 
 [node name="RecordSongButton" type="Button" parent="UserInterface"]
 z_index = 40
@@ -222,7 +257,8 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_xng46")
 theme_override_styles/hover = SubResource("StyleBoxFlat_acarb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xng46")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xng46")
-text = "Record"
+text = "Record
+Song"
 
 [node name="SwitchLayerButtons" type="Node" parent="UserInterface"]
 
@@ -402,22 +438,6 @@ focus_mode = 0
 text = "♻️ Laad Template"
 alignment = 0
 
-[node name="SaveToWavButton" type="Button" parent="UserInterface/MainButtons"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -828.0
-offset_top = -42.0
-offset_right = -648.0
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-text = "📥 Beat naar mp3"
-alignment = 0
-
 [node name="AllLayersToMp3" type="Button" parent="UserInterface/MainButtons"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -540,6 +560,22 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 text = "🐢 Langzamer"
+alignment = 0
+
+[node name="SaveToWavButton" type="Button" parent="UserInterface/MainButtons"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -828.0
+offset_top = -42.0
+offset_right = -648.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "📥 Beat naar mp3"
 alignment = 0
 
 [node name="SampleButtons" type="Node" parent="UserInterface"]

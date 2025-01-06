@@ -1,28 +1,28 @@
 using Godot;
 using System;
 
-public partial class VoiceOver : Node
+public partial class LayerVoiceOver : Node
 {
 	// singleton
-    public static VoiceOver instance = null;
+    public static LayerVoiceOver instance = null;
 
-	[Export] public Button recordButton;
-	bool shouldRecord = false;
+	// user interface
+	[Export] public TextureProgressBar textureProgressBar;
+	[Export] public Button recordLayerButton;
 
-	[Export] Button snellerButton;
-	[Export] Button langzamerButton;
-
-	[Export] TextureProgressBar textureProgressBar;
-
-    AudioEffectRecord audioEffectRecord;
+	// recording
+	AudioStream[] voiceOvers = new AudioStream[10];
+	AudioEffectRecord audioEffectRecord;
 	AudioStreamPlayer2D audioPlayer;
+	bool shouldRecord = false;
 	bool recording = false;
 	float recordingTimer = 0;
 
-	AudioStream[] voiceOvers = new AudioStream[10];
+	// other
+	[Export] Button snellerButton;
+	[Export] Button langzamerButton;
 
 	int currentLayer => Manager.instance.currentLayerIndex;
-
 	public void SetCurrentLayerVoiceOver(AudioStream voiceOver) => voiceOvers[currentLayer] = voiceOver;
 	public AudioStream GetCurrentLayerVoiceOver() => voiceOvers[currentLayer];
 
@@ -32,7 +32,7 @@ public partial class VoiceOver : Node
         instance ??= this;
 
 		// init record button
-		recordButton.Pressed += () => shouldRecord = !shouldRecord;
+		recordLayerButton.Pressed += () => shouldRecord = !shouldRecord;
 
 		// create audioplayer
 		audioPlayer = new AudioStreamPlayer2D();
@@ -45,7 +45,7 @@ public partial class VoiceOver : Node
     public override void _Process(double delta)
 	{
 		// set color of record button
-		recordButton.Modulate = shouldRecord ? new(1, 0.5f, 0.5f) : new(1, 1, 1);
+		recordLayerButton.Modulate = shouldRecord ? new(1, 0.5f, 0.5f) : new(1, 1, 1);
 
 		// update recording timer
 		if (recording) recordingTimer += (float)delta;
@@ -57,9 +57,8 @@ public partial class VoiceOver : Node
 		Manager.instance.SetLayerSwitchButtonsEnabled(!recording);
 		Manager.instance.PlayPauseButton.Disabled = recording;
 		Manager.instance.ResetPlayerButton.Disabled = recording;
-		recordButton.Disabled = recording;
-		SongVoiceOver.instance.recordButton.Disabled = recording;
-		GD.Print(recording);
+		recordLayerButton.Disabled = recording;
+		SongVoiceOver.instance.recordSongButton.Disabled = recording;
 
 		// set progress bar value
 		float secondsPerBeat = (60f / Manager.instance.bpm) / 2;

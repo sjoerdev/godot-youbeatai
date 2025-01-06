@@ -865,7 +865,7 @@ public partial class Manager : Node
         achievementspanel.Visible = visible;
 
         // recording
-        SongVoiceOver.instance.recordButton.Visible = visible;
+        SongVoiceOver.instance.recordSongButton.Visible = visible;
         SongVoiceOver.instance.progressbar.Visible = visible;
     }
 
@@ -1345,8 +1345,7 @@ public partial class Manager : Node
         // if layer looping
         if (layerLoopToggle.ButtonPressed || SongVoiceOver.instance.recording) if (currentBeat == 31) NextLayer();
 
-        // if (currentBeat == 0) VoiceOver.instance.OnTop();
-
+        if (currentBeat == 0) LayerVoiceOver.instance.OnTop();
         if (currentLayerIndex == 0 && currentBeat == 0) SongVoiceOver.instance.OnBeginning();
     }
 
