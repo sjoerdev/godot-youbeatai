@@ -51,15 +51,6 @@ public partial class LayerVoiceOver : Node
 		if (recording) recordingTimer += (float)delta;
 		else recordingTimer = 0;
 
-		// buttons during recording
-		snellerButton.Disabled = recording;
-		langzamerButton.Disabled = recording;
-		Manager.instance.SetLayerSwitchButtonsEnabled(!recording);
-		Manager.instance.PlayPauseButton.Disabled = recording;
-		Manager.instance.ResetPlayerButton.Disabled = recording;
-		recordLayerButton.Disabled = recording;
-		SongVoiceOver.instance.recordSongButton.Disabled = recording;
-
 		// set progress bar value
 		float secondsPerBeat = (60f / Manager.instance.bpm) / 2;
 		float secondsPerRotation = secondsPerBeat * 32;
@@ -91,6 +82,15 @@ public partial class LayerVoiceOver : Node
 		recording = true;
         audioEffectRecord.SetRecordingActive(true);
 		GD.Print("recording started");
+
+		// buttons during recording
+		snellerButton.Visible = false;
+		langzamerButton.Visible = false;
+		Manager.instance.SetLayerSwitchButtonsVisibility(false);
+		Manager.instance.PlayPauseButton.Visible = false;
+		Manager.instance.ResetPlayerButton.Visible = false;
+		recordLayerButton.Visible = false;
+		SongVoiceOver.instance.recordSongButton.Visible = false;
     }
 
     private void StopRecording()
@@ -100,5 +100,14 @@ public partial class LayerVoiceOver : Node
 		recording = false;
 		shouldRecord = false;
 		SetCurrentLayerVoiceOver(audioEffectRecord.GetRecording());
+
+		// buttons after recording
+		snellerButton.Visible = true;
+		langzamerButton.Visible = true;
+		Manager.instance.SetLayerSwitchButtonsVisibility(true);
+		Manager.instance.PlayPauseButton.Visible = true;
+		Manager.instance.ResetPlayerButton.Visible = true;
+		recordLayerButton.Visible = true;
+		SongVoiceOver.instance.recordSongButton.Visible = true;
     }
 }

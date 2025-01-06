@@ -209,7 +209,7 @@ script = ExtResource("18_tunoq")
 textureProgressBar = NodePath("TextureProgressBar")
 recordLayerButton = NodePath("../../UserInterface/RecordLayerButton")
 snellerButton = NodePath("../../UserInterface/MainButtons/BpmUpButton")
-langzamerButton = NodePath("../../UserInterface/RecordLayerButton")
+langzamerButton = NodePath("../../UserInterface/MainButtons/BpmDownButton")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Managers/LayerVoiceOver"]
 offset_left = -265.0
