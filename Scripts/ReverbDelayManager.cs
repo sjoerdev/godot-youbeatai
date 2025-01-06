@@ -29,7 +29,6 @@ public partial class ReverbDelayManager : Node
     private void SetReverbLevel(float level)
     {
         AudioServer.SetBusEffectEnabled(AudioServer.GetBusIndex("Master"), 0, level > 0);
-        GD.Print(level);
         reverbEffect.Wet = level;
         reverbEffect.RoomSize = level;
     }
