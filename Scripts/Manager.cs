@@ -21,6 +21,7 @@ public partial class Manager : Node
     // other sfx
     AudioStreamPlayer2D extraAudioPlayer;
     [Export] AudioStream metronome_sfx;
+    [Export] AudioStream metronomealt_sfx;
     [Export] AudioStream achievement_sfx;
     bool metronome_sfx_enabled = false;
 
@@ -694,52 +695,6 @@ public partial class Manager : Node
             }
         }
 
-        conditions = new Func<bool>[]
-        {
-            // intro
-            () => clapped, // t key is debug only
-
-            // rode ring
-            () => AmountOfActives(0) >= 4, // temp
-            () => AmountOfActives(0) >= 8, // temp
-            () => playing == true, // temp
-            () => stompedAmount > 4, // temp
-
-            // oranje ring
-            () => AmountOfActives(1) >= 4, // temp
-            () => AmountOfActives(1) >= 8, // temp
-            () => playing == true, // temp
-            () => clappedAmount > 4, // temp
-
-            // gele ring
-            () => AmountOfActives(2) >= 2, // temp
-
-            // blauwe ring
-            () => AmountOfActives(3) >= 2, // temp
-
-            // alle ringen
-            () => playing == true, // temp
-
-            // progressie bar
-            () => progressBar.Value > 50,
-
-            // custom sample
-            () => recordSampleButton0.recordedAudio != null,
-            () => recordSampleCheckButton0.ButtonPressed == true,
-            () => playing == true, // temp
-
-            // effects
-            () => haschangedbpm,
-            () => ReverbDelayManager.instance?.reverbSlider.Value != 0 || ReverbDelayManager.instance?.delaySlider.Value != 0,
-            () => swing > 0.1f,
-
-            // saving
-            () => hassavedtofile,
-            () => savedToLaout,
-            () => hasclearedlayout,
-            () => false, // todo: implement
-        };
-
         // setup achievements
         instructions = new string[23]
         {
@@ -785,6 +740,52 @@ public partial class Manager : Node
 			"Druk op het 'Copieer Template' 💾 knopje om je beats naar een template te saven, zodat je altijd terug kan vinden.",
 			"Super gedaan! nu nog een laatste weetje en dan kan je zelf aan de slag, druk op 'Leeg Template' 🗑️ om alles te resetten.",
 			"Oh nee nu is alles weg! Gelukkig heb je de template nog files nog. Nu mag je helemaal zelf aan de slag! Druk op de Stop Tutorial knop om de tutorial te eindigen",
+        };
+
+        conditions = new Func<bool>[]
+        {
+            // intro
+            () => clapped, // t key is debug only
+
+            // rode ring
+            () => AmountOfActives(0) >= 4, // temp
+            () => AmountOfActives(0) >= 8, // temp
+            () => playing == true, // temp
+            () => stompedAmount > 4, // temp
+
+            // oranje ring
+            () => AmountOfActives(1) >= 4, // temp
+            () => AmountOfActives(1) >= 8, // temp
+            () => playing == true, // temp
+            () => clappedAmount > 4, // temp
+
+            // gele ring
+            () => AmountOfActives(2) >= 2, // temp
+
+            // blauwe ring
+            () => AmountOfActives(3) >= 2, // temp
+
+            // alle ringen
+            () => playing == true, // temp
+
+            // progressie bar
+            () => progressBar.Value > 50,
+
+            // custom sample
+            () => recordSampleButton0.recordedAudio != null,
+            () => recordSampleCheckButton0.ButtonPressed == true,
+            () => playing == true, // temp
+
+            // effects
+            () => haschangedbpm,
+            () => ReverbDelayManager.instance?.reverbSlider.Value != 0 || ReverbDelayManager.instance?.delaySlider.Value != 0,
+            () => swing > 0.1f,
+
+            // saving
+            () => hassavedtofile,
+            () => savedToLaout,
+            () => hasclearedlayout,
+            () => false, // todo: implement
         };
         
         outcomes = new Action[23]
@@ -1336,7 +1337,12 @@ public partial class Manager : Node
 
     public void OnBeat()
     {
-        if (metronome_sfx_enabled && currentBeat % 2 == 0) PlayExtraSFX(metronome_sfx);
+        if (metronome_sfx_enabled)
+        {
+           if (currentBeat % 4 == 0) PlayExtraSFX(metronome_sfx);
+           else PlayExtraSFX(metronomealt_sfx);
+        }
+
         if (beatActives[0, currentBeat]) firstAudioPlayer.Play();
         if (beatActives[1, currentBeat]) secondAudioPlayer.Play();
         if (beatActives[2, currentBeat]) thirdAudioPlayer.Play();
