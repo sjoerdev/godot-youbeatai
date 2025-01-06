@@ -40,5 +40,6 @@ public partial class ReverbDelayManager : Node
         delayEffect.Tap1Active = true;
         delayEffect.Tap2Active = false;
         delayEffect.Tap1DelayMs = level * 1000f;
+        delayEffect.Tap1LevelDb = -20;
     }
 }

@@ -419,7 +419,7 @@ offset_bottom = -216.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "💾 Opslaan Template"
+text = "💾 Copieer Template"
 alignment = 0
 
 [node name="LoadLayoutButton" type="Button" parent="UserInterface/MainButtons"]
@@ -435,7 +435,7 @@ offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "♻️ Laad Template"
+text = "♻️ Plak Template"
 alignment = 0
 
 [node name="AllLayersToMp3" type="Button" parent="UserInterface/MainButtons"]

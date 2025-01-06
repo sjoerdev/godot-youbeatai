@@ -198,12 +198,12 @@ public partial class Manager : Node
     public void OnPlayPauseButton() => playing = !playing;
     public void OnBpmUpButton()
     {
-        bpm += 10;
+        if (bpm < 300) bpm += 10;
         haschangedbpm = true;
     }
     public void OnBpmDownButton()
     {
-        bpm -= 10;
+        if (bpm > 40) bpm -= 10;
         haschangedbpm = true;
     }
     public void OnResetPlayerButton() => currentBeat = 31;
@@ -782,7 +782,7 @@ public partial class Manager : Node
 
             // saving
 			"Je hebt echt een super beat gemaakt! Druk nu op de 📥 knop om je beat naar een muziek bestand te saven.",
-			"Druk op het 'Opslaam Template' 💾 knopje om je beats naar een template te saven, zodat je altijd terug kan vinden.",
+			"Druk op het 'Copieer Template' 💾 knopje om je beats naar een template te saven, zodat je altijd terug kan vinden.",
 			"Super gedaan! nu nog een laatste weetje en dan kan je zelf aan de slag, druk op 'Leeg Template' 🗑️ om alles te resetten.",
 			"Oh nee nu is alles weg! Gelukkig heb je de template nog files nog. Nu mag je helemaal zelf aan de slag! Druk op de Stop Tutorial knop om de tutorial te eindigen",
         };
