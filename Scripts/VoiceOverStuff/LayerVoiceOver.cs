@@ -91,6 +91,8 @@ public partial class LayerVoiceOver : Node
 		Manager.instance.ResetPlayerButton.Visible = false;
 		recordLayerButton.Visible = false;
 		SongVoiceOver.instance.recordSongButton.Visible = false;
+
+		SetVolume(0f);
     }
 
     private void StopRecording()
@@ -109,5 +111,16 @@ public partial class LayerVoiceOver : Node
 		Manager.instance.ResetPlayerButton.Visible = true;
 		recordLayerButton.Visible = true;
 		SongVoiceOver.instance.recordSongButton.Visible = true;
+
+		SetVolume(1f);
+    }
+
+	void SetVolume(float value)
+    {
+        float db = Mathf.LinearToDb(value);
+        Manager.instance.firstAudioPlayer.VolumeDb = db;
+        Manager.instance.secondAudioPlayer.VolumeDb = db;
+        Manager.instance.thirdAudioPlayer.VolumeDb = db;
+        Manager.instance.fourthAudioPlayer.VolumeDb = db;
     }
 }

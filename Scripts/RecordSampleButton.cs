@@ -44,7 +44,7 @@ public partial class RecordSampleButton : Sprite2D
 
     private void StartRecording()
     {
-        SetVolume(0.25f);
+        SetVolume(0f);
 		Modulate = new Color(1, 0, 0, 1);
         audioEffectRecord.SetRecordingActive(true);
     }
