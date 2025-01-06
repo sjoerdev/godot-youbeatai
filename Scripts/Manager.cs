@@ -328,7 +328,7 @@ public partial class Manager : Node
     {
         GD.Print("saving all layers to an mp3 file");
         SetCurrentLayer(beatActives);
-        SaveDrumLoopsAsFile(layers);
+        SaveSongAsFile(layers);
     }
 
     public void ConvertAudioStreamWavToWav(AudioStreamWav audioStreamWav, string filePath)
@@ -413,7 +413,67 @@ public partial class Manager : Node
         }
     }
 
-    public void SaveDrumLoopsAsFile(List<bool[,]> loops)
+    public void SaveBeatAsFile(bool[,] loop)
+    {
+        string sanitizedTime = Time.GetTimeStringFromSystem().Replace(":", "_");
+        string filename = "beat_" + bpm.ToString() + "bpm_" + sanitizedTime;
+
+        int sampleRate = 48000;
+        float secondsPerBeat = 60f / bpm;
+        int beatsPerLoop = 32;
+        int totalBeats = beatsPerLoop;
+        int totalSamples = (int)(totalBeats * secondsPerBeat * sampleRate);
+        float[] audioData = new float[totalSamples];
+        bool[,] currentLoop = loop;
+
+        // for each ring
+        for (int ring = 0; ring < currentLoop.GetLength(0); ring++)
+        {
+            // for each beat
+            for (int beat = 0; beat < currentLoop.GetLength(1); beat++)
+            {
+                // if beat active
+                if (currentLoop[ring, beat])
+                {
+                    // get audio sample of beat
+                    AudioStreamWav audioStreamWav = (AudioStreamWav)audioFilesToUse[ring];
+                    var audioBytes = audioStreamWav.GetData();
+
+                    // Convert byte[] to float[] (each pcm sample is a 16 bit integer also known as a short)
+                    float[] samples = new float[audioBytes.Length / 2];
+                    for (int i = 0; i < samples.Length; i++) samples[i] = BitConverter.ToInt16(audioBytes, i * 2) / 32768f;
+
+                    // write audiodata at position
+                    for (int i = 0; i < samples.Length; i++)
+                    {
+                        int position = (int)((beat) * secondsPerBeat * sampleRate) + i;
+                        if (position < totalSamples) audioData[position] += samples[i];
+                    }
+                }
+            }
+        }
+
+        // normalize
+        float max = 0;
+        foreach (var sample in audioData) if (Math.Abs(sample) > max) max = Math.Abs(sample);
+        if (max > 1.0f) for (int i = 0; i < audioData.Length; i++) audioData[i] /= max;
+
+        // write file
+        using (var writer = new WaveFileWriter(filename + ".wav", new WaveFormat(sampleRate, 1)))
+        {
+            foreach (var sample in audioData) writer.WriteSample(sample);
+            writer.Close();
+        }
+
+        ChangePitch(filename + ".wav", 2f);
+
+        // convert and finish
+        ConvertWavToMp3("combined.wav");
+        ShowSavingLabel(filename);
+        hassavedtofile = true;
+    }
+
+    public void SaveSongAsFile(List<bool[,]> loops)
     {
         string sanitizedTime = Time.GetTimeStringFromSystem().Replace(":", "_");
         string filename = (loops.Count == 1 ? "beat_" : "liedje_") + bpm.ToString() + "bpm_" + sanitizedTime;
@@ -566,7 +626,7 @@ public partial class Manager : Node
         PlayPauseButton.Pressed += OnPlayPauseButton;
         BpmUpButton.Pressed += OnBpmUpButton;
         BpmDownButton.Pressed += OnBpmDownButton;
-        saveToWavButton.Pressed += () => SaveDrumLoopsAsFile(new List<bool[,]>() { beatActives });
+        saveToWavButton.Pressed += () => SaveBeatAsFile(beatActives);
         ResetPlayerButton.Pressed += () => { OnResetPlayerButton(); playing = true; };
 
         // skipping / ending the tutorial
