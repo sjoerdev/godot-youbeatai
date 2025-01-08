@@ -164,11 +164,11 @@ script = ExtResource("10_4yy8e")
 
 [node name="TemplateManager" type="Node" parent="Managers" node_paths=PackedStringArray("templateButton", "leftTemplateButton", "rightTemplateButton", "showTemplateButton", "setTemplateButton")]
 script = ExtResource("9_t3vou")
-templateButton = NodePath("../../UserInterface/MainButtons/TemplateButton")
-leftTemplateButton = NodePath("../../UserInterface/MainButtons/TemplateLeftButton")
-rightTemplateButton = NodePath("../../UserInterface/MainButtons/TemplateRightButton")
-showTemplateButton = NodePath("../../UserInterface/MainButtons/ShowTemplateButton")
-setTemplateButton = NodePath("../../UserInterface/MainButtons/SetTemplateButton")
+templateButton = NodePath("../../UserInterface/SettingsButton/SettingsPanel/TemplateButton")
+leftTemplateButton = NodePath("../../UserInterface/SettingsButton/SettingsPanel/TemplateLeftButton")
+rightTemplateButton = NodePath("../../UserInterface/SettingsButton/SettingsPanel/TemplateRightButton")
+showTemplateButton = NodePath("../../UserInterface/SettingsButton/SettingsPanel/ShowTemplateButton")
+setTemplateButton = NodePath("../../UserInterface/SettingsButton/SettingsPanel/SetTemplateButton")
 
 [node name="ReverbDelayManager" type="Node" parent="Managers" node_paths=PackedStringArray("reverbSlider", "delaySlider")]
 script = ExtResource("10_jykfx")
@@ -418,9 +418,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1166.0
+offset_left = -1167.0
 offset_top = -248.0
-offset_right = -986.0
+offset_right = -987.0
 offset_bottom = -216.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -434,9 +434,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1166.0
+offset_left = -1167.0
 offset_top = -212.0
-offset_right = -986.0
+offset_right = -987.0
 offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -459,82 +459,6 @@ grow_vertical = 2
 focus_mode = 0
 text = "🎼 Liedje naar mp3"
 alignment = 0
-
-[node name="TemplateButton" type="Button" parent="UserInterface/MainButtons"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1171.0
-offset_top = -418.0
-offset_right = -991.0
-offset_bottom = -386.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-text = ".........."
-
-[node name="TemplateLeftButton" type="Button" parent="UserInterface/MainButtons"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1171.0
-offset_top = -383.0
-offset_right = -1085.0
-offset_bottom = -351.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-text = "<"
-
-[node name="TemplateRightButton" type="Button" parent="UserInterface/MainButtons"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1080.0
-offset_top = -383.0
-offset_right = -991.0
-offset_bottom = -352.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-text = ">"
-
-[node name="ShowTemplateButton" type="Button" parent="UserInterface/MainButtons"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1171.0
-offset_top = -347.0
-offset_right = -1084.0
-offset_bottom = -315.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-text = "Tip🔮"
-
-[node name="SetTemplateButton" type="Button" parent="UserInterface/MainButtons"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1080.0
-offset_top = -347.0
-offset_right = -990.0
-offset_bottom = -315.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-text = "Doe 🤖
-"
 
 [node name="BpmUpButton" type="Button" parent="UserInterface/MainButtons"]
 anchors_preset = 8
@@ -710,7 +634,88 @@ alignment = 2
 layout_mode = 0
 offset_top = 35.0
 offset_right = 162.0
-offset_bottom = 201.0
+offset_bottom = 312.0
+
+[node name="TemplateButton" type="Button" parent="UserInterface/SettingsButton/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 27.5
+offset_right = 75.0
+offset_bottom = 59.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = ".........."
+
+[node name="TemplateLeftButton" type="Button" parent="UserInterface/SettingsButton/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 62.5
+offset_right = -3.0
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "<"
+
+[node name="TemplateRightButton" type="Button" parent="UserInterface/SettingsButton/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = 62.5
+offset_right = 75.0
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = ">"
+
+[node name="ShowTemplateButton" type="Button" parent="UserInterface/SettingsButton/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 98.5
+offset_right = -3.0
+offset_bottom = 130.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "Tip🔮"
+
+[node name="SetTemplateButton" type="Button" parent="UserInterface/SettingsButton/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = 98.5
+offset_right = 75.0
+offset_bottom = 130.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "Doe 🤖
+"
 
 [node name="ClapStompBias" type="HSlider" parent="UserInterface/SettingsButton/SettingsPanel"]
 layout_mode = 0

@@ -867,9 +867,6 @@ public partial class Manager : Node
         // effect buttons
         SetEffectButtonsVisibility(visible);
 
-        // template buttons
-        SetTemplateButtonsVisibility(visible);
-
         // recording buttons
         SetRecordingButtonsVisibility(visible);
 
@@ -920,15 +917,6 @@ public partial class Manager : Node
         metronomebg.Visible = visible;
         ReverbDelayManager.instance.reverbSlider.Visible = visible;
         ReverbDelayManager.instance.delaySlider.Visible = visible;
-    }
-
-    void SetTemplateButtonsVisibility(bool visible)
-    {
-        TemplateManager.instance.templateButton.Visible = visible;
-        TemplateManager.instance.leftTemplateButton.Visible = visible;
-        TemplateManager.instance.rightTemplateButton.Visible = visible;
-        TemplateManager.instance.showTemplateButton.Visible = visible;
-        TemplateManager.instance.setTemplateButton.Visible = visible;
     }
 
     void SetRecordingButtonsVisibility(bool visible)
