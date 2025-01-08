@@ -480,7 +480,7 @@ public partial class Manager : Node
     public void SaveSongAsFile(List<bool[,]> loops)
     {
         string sanitizedTime = Time.GetTimeStringFromSystem().Replace(":", "_");
-        string filename = (loops.Count == 1 ? "beat_" : "liedje_") + bpm.ToString() + "bpm_" + sanitizedTime;
+        string filename = "liedje_" + bpm.ToString() + "bpm_" + sanitizedTime;
 
         int sampleRate = 48000;
         float secondsPerBeat = 60f / bpm;
@@ -538,11 +538,15 @@ public partial class Manager : Node
 
         // layer voiceover
         ConvertAudioStreamWavToWav((AudioStreamWav)SongVoiceOver.instance.voiceOver, "voiceover.wav");
-        MixAudioFiles(filename + ".wav", "voiceover.wav", "combined.wav");
+        MixAudioFiles(filename + ".wav", "voiceover.wav", filename + "_withvoice" + ".wav");
+
+        // delete non-voiceover wavs
+        File.Delete(filename + ".wav");
+        File.Delete("voiceover.wav");
 
         // convert and finish
-        ConvertWavToMp3("combined");
-        ShowSavingLabel(filename);
+        ConvertWavToMp3(filename + "_withvoice");
+        ShowSavingLabel(filename + "_withvoice");
         hassavedtofile = true;
     }
 
