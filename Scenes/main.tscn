@@ -1190,3 +1190,9 @@ text = "Opgeslagen naar:
 \"muziekbestand.mp3\""
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="SavingLabel"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 201.0
+offset_bottom = 84.0
