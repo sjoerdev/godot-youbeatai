@@ -821,17 +821,17 @@ public partial class Manager : Node
             () => SetEffectButtonsVisibility(true),
             null,
             null,
-            () => { SetMainButtonsVisibility(true); LayerVoiceOver.instance.recordLayerButton.Visible = true; },
+            () => { LayerVoiceOver.instance.recordLayerButton.Visible = true; LayerVoiceOver.instance.textureProgressBar.Visible = true; },
 
             // layer voice over
-            () => SetLayerSwitchButtonsVisibility(true),
-            () => settingsPanel.Visible = true,
-            null,
-            () => SongVoiceOver.instance.recordSongButton.Visible = true,
+            () => { settingsPanel.Visible = true; SetLayerSwitchButtonsVisibility(true); }, // before doing liedje modus
+            null, // before pressing play
+            () => SetMainButtonsVisibility(true), // before saving to layout
+            () => { SongVoiceOver.instance.recordSongButton.Visible = true; SongVoiceOver.instance.progressbar.Visible = true; }, // before recording song
 
             // song voice over
-            null,
-            null,
+            null, // before saving to file
+            () => SetEntireInterfaceVisibility(true), // enable all
             null
         };
     }
