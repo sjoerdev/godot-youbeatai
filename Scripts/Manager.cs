@@ -538,15 +538,15 @@ public partial class Manager : Node
 
         // layer voiceover
         ConvertAudioStreamWavToWav((AudioStreamWav)SongVoiceOver.instance.voiceOver, "voiceover.wav");
-        MixAudioFiles(filename + ".wav", "voiceover.wav", filename + "_withvoice" + ".wav");
+        MixAudioFiles(filename + ".wav", "voiceover.wav", filename + "_vc" + ".wav");
 
         // delete non-voiceover wavs
         File.Delete(filename + ".wav");
         File.Delete("voiceover.wav");
 
         // convert and finish
-        ConvertWavToMp3(filename + "_withvoice");
-        ShowSavingLabel(filename + "_withvoice");
+        ConvertWavToMp3(filename + "_vc");
+        ShowSavingLabel(filename + "_vc");
         hassavedtofile = true;
     }
 
