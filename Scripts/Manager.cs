@@ -734,7 +734,7 @@ public partial class Manager : Node
 			
 			// custom sample
 			"Je hebt het ritme te pakken! Nu gaan we onze eigen geluid maken, houd het microfoon 🎤 icoontje boven het rode 🔴 knopje ingedrukt een spreek iets in je microfoon",
-			"Druk op de toggle boven het microfoon 🎤 icoontje om het opgenomen geluid te activeren",
+			"Druk op de toggle boven de microfoon 🎤 icoontje om het opgenomen geluid te activeren",
 			"Druk op '⏯ Start' om te horen hoe je eigen geluidje klinkt",
 
 			// effects
@@ -744,9 +744,9 @@ public partial class Manager : Node
 
             // layer voice over
             "door op de '🎤 Beat Opnemen' in het midden van de beats te drukken kan je jou stem over de beat opnemen. hij begint met opnemen als die beat ovenaan is.",
-            "klik op '⚙️ Instellingen', hier kan je '🔁 Liedje Modus' aanzetten zodat de Beats achter elkaar afgespeeld worden",
+            "Bij '⚙️ Instellingen' kan je '🔁 Liedje Modus' aanzetten zodat de Beats achter elkaar afgespeeld worden",
             "Druk op '⏯ Start' om te horen hoe je eigen beats achter elkaar klinken",
-            "Liedjes hebben een patroon: 'Intro🌱, Couplet📜, Refrein🤩 en Einde🏁'. Om je beats naar een andere laag te verplaatsen druk '💾 Copieer Beat' en '♻️ Plak Beat'",
+            "Liedjes hebben een patroon: 'Intro🌱, Couplet📜, Refrein🤩 en Einde🏁'. Om je beats naar een andere laag te verplaatsen druk '💾 Kopieer Beat' en '♻️ Plak Beat'",
 
             // song voice over
             "Laten we nu het hele liedje opnemen door op de '🎙️ Liedje Opnemen' links bovenin het scherm te drukken. Dan begin hij met opnemen als hij bij de eerste beat op de eerst laag is",
