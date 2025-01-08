@@ -409,7 +409,7 @@ offset_bottom = -252.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "🗑️ Leeg Template"
+text = "🗑️ Leeg Beat"
 alignment = 0
 
 [node name="SaveLayoutButton" type="Button" parent="UserInterface/MainButtons"]
@@ -425,7 +425,7 @@ offset_bottom = -216.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "💾 Copieer Template"
+text = "💾 Copieer Beat"
 alignment = 0
 
 [node name="LoadLayoutButton" type="Button" parent="UserInterface/MainButtons"]
@@ -441,7 +441,7 @@ offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "♻️ Plak Template"
+text = "♻️ Plak Beat"
 alignment = 0
 
 [node name="AllLayersToMp3" type="Button" parent="UserInterface/MainButtons"]

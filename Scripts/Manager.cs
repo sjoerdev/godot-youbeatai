@@ -707,13 +707,13 @@ public partial class Manager : Node
 			// rode ring
 			"Dit is een 🔴 beat ring, plaats nu 4 beats op de witte streepjes",
 			"Helemaal goed! zet 4 🔴 beats op een plek die jij wil",
-			"Druk nu op Start ⏯ om je beat te horen",
+			"Druk nu op '⏯ Start' om je beat te horen",
 			"Als je stompt 👞 met je voet op de grond precies wanneer er een rode beat is krijg ik energie ⚡",
 
 			// oranje ring
 			"Dit is nog een 🟠 beat ring, plaats nu 4 beats in het midden van de rode beats",
 			"Helemaal goed! zet 4 🟠 beats op een plek die jij wil!",
-			"Druk nu op Start ⏯ om je beat te horen",
+			"Druk nu op '⏯ Start' om je beat te horen",
 			"Als je klapt 👏 met je handen wanneer er een oranje 🟠 beat klinkt krijgen ik energie ⚡",
 
 			// gele ring
@@ -723,7 +723,7 @@ public partial class Manager : Node
 			"Dit is nog een 🔵 beat ring, plaats nu 2 beats waar je wilt op deze ring",
 
 			// alle ringen
-			"Druk nog een keer op Start ⏯, luister naar alle beats bij elkaar!",
+			"Druk nog een keer op '⏯ Start', luister naar alle beats bij elkaar!",
 			
 			// progressiebar
 			"Klap 👏 en stamp 👞 op het goede moment! Geef me 50% energie ⚡ om naar de volgende stap te gaan!",
@@ -731,23 +731,23 @@ public partial class Manager : Node
 			// custom sample
 			"Je hebt het ritme te pakken! Nu gaan we onze eigen geluid maken, houd het microfoon 🎤 icoontje boven het rode 🔴 knopje ingedrukt een spreek iets in je microfoon",
 			"Druk op de toggle boven het microfoon 🎤 icoontje om het opgenomen geluid te activeren",
-			"Druk op Start ⏯ om te horen hoe je eigen geluidje klinkt",
+			"Druk op '⏯ Start' om te horen hoe je eigen geluidje klinkt",
 
 			// effects
-			"We gaan de beat sneller maken. Druk op 'Sneller' 🐇 om de beat het sneller te maken",
-			"Druk op de Galm 🏛 of de Echo ⛰ knop. voor speciale echo's",
-			"Tijd voor wat Swing 🌀 in de beat. sleep het swing balkje naar rechts.",
+			"We gaan de beat sneller maken. Druk op '🐇 Sneller' om de beat het sneller te maken",
+			"Druk op de '🏛 Galm' of de '⛰ Echo'  knop. voor speciale echo's",
+			"Tijd voor wat '🌀 Swing' in de beat. sleep het swing balkje naar rechts.",
 
             // layer voice over
-            "door op de 🎤 in het midden van de beat te drukken kan je een beat geluid opnemen. hij begint met opnemen als die bovenaan is.",
-            "klik op '⚙️ Instellingen', hier kan je 'Liedje Modus' 🔁 aanzetten zodat de Beats achter elkaar afgespeeld worden",
-            "Druk op Start ⏯ om te horen hoe je eigen beats achter elkaar klinken",
-            "Liedjes hebben vaak een patroon zoals: Intro🌱, Verhaal📜, Refrein🤩 en Einde🏁.  deze onderdelen komen dan vaak terug. Gelukkig is er een trucje om dit makkelijk te maken 'Copieer Beaat' 💾 en 'Plak Beat' ♻️ , probeer het maar eens.",
+            "door op de '🎤 Beat Opnemen' in het midden van de beats te drukken kan je jou stem over de beat opnemen. hij begint met opnemen als die beat ovenaan is.",
+            "klik op '⚙️ Instellingen', hier kan je '🔁 Liedje Modus' aanzetten zodat de Beats achter elkaar afgespeeld worden",
+            "Druk op '⏯ Start' om te horen hoe je eigen beats achter elkaar klinken",
+            "Liedjes een patroon: 'Intro🌱, Verhaal📜, Refrein🤩 en Einde🏁'. Om je beats naar een andere laag te verplaatsen druk '💾 Copieer Beat' en '♻️ Plak Beat'",
 
             // song voice over
-            "Laten we nu het hele liedje opnemen door op de 🎙️ 'Song Opnemen' links bovenin het scherm te drukken. Dan begin hij met opnemen als hij bij de eerste beat op de eerst laag is",
+            "Laten we nu het hele liedje opnemen door op de '🎙️ Song Opnemen' links bovenin het scherm te drukken. Dan begin hij met opnemen als hij bij de eerste beat op de eerst laag is",
             "Als je tevreden bent dan kan je ook echt je '🎼 Liedje naar mp3'",
-            "Druk op de 'Stop Tutorial' knop om de tutorial te eindigen",
+            "Druk op de '🚫 Stop' knop om de tutorial te eindigen",
         };
 
         conditions = new Func<bool>[26]
