@@ -239,7 +239,7 @@ offset_bottom = -679.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "🎙️  Song Opnemen
+text = "🎙️ Liedje Opnemen
 "
 alignment = 0
 
@@ -264,7 +264,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_xng46")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xng46")
 text = "Beat
 Opnemen
-🎙️"
+🎤"
 
 [node name="SwitchLayerButtons" type="Node" parent="UserInterface"]
 
@@ -1179,6 +1179,7 @@ angle_max = 90.0
 hue_variation_max = 0.55
 
 [node name="SavingLabel" type="Label" parent="."]
+visible = false
 offset_left = -532.0
 offset_top = -46.0
 offset_right = -294.0

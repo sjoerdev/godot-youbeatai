@@ -740,16 +740,16 @@ public partial class Manager : Node
 			// effects
 			"We gaan de beat sneller maken. Druk op '🐇 Sneller' om de beat het sneller te maken",
 			"Druk op de '🏛 Galm' of de '⛰ Echo'  knop. voor speciale echo's",
-			"Tijd voor wat '🌀 Swing' in de beat. sleep het swing balkje naar rechts.",
+			"Tijd voor wat '🌀 Swing' in de beat. sleep het swing balkje naar het midden.",
 
             // layer voice over
             "door op de '🎤 Beat Opnemen' in het midden van de beats te drukken kan je jou stem over de beat opnemen. hij begint met opnemen als die beat ovenaan is.",
             "klik op '⚙️ Instellingen', hier kan je '🔁 Liedje Modus' aanzetten zodat de Beats achter elkaar afgespeeld worden",
             "Druk op '⏯ Start' om te horen hoe je eigen beats achter elkaar klinken",
-            "Liedjes een patroon: 'Intro🌱, Verhaal📜, Refrein🤩 en Einde🏁'. Om je beats naar een andere laag te verplaatsen druk '💾 Copieer Beat' en '♻️ Plak Beat'",
+            "Liedjes hebben een patroon: 'Intro🌱, Couplet📜, Refrein🤩 en Einde🏁'. Om je beats naar een andere laag te verplaatsen druk '💾 Copieer Beat' en '♻️ Plak Beat'",
 
             // song voice over
-            "Laten we nu het hele liedje opnemen door op de '🎙️ Song Opnemen' links bovenin het scherm te drukken. Dan begin hij met opnemen als hij bij de eerste beat op de eerst laag is",
+            "Laten we nu het hele liedje opnemen door op de '🎙️ Liedje Opnemen' links bovenin het scherm te drukken. Dan begin hij met opnemen als hij bij de eerste beat op de eerst laag is",
             "Als je tevreden bent dan kan je ook echt je '🎼 Liedje naar mp3'",
             "Druk op de '🚫 Stop' knop om de tutorial te eindigen",
         };
